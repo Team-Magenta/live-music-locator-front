@@ -1,10 +1,10 @@
 import './App.css';
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import Home from './Home';
-import Search from './Search';
-import OurTeam from './OurTeam';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import Search from './components/Search';
+import OurTeam from './components/OurTeam';
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,17 +19,17 @@ class App extends React.Component {
           <Header />
             <Routes>
               <Route
-                exact path="/"
+                exact path="/component/Home"
                 element={<Home/>}
               >
               </Route>
               <Route
-                exact path="/"
+                exact path="/component/Search"
                 element={<Search/>}
               >
               </Route>
               <Route
-                exact path="/"
+                exact path="/component/OurTeam"
                 element={<OurTeam/>}
               >
               </Route>
