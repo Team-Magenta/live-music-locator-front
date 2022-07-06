@@ -8,17 +8,15 @@ class Home extends React.Component {
     super(props);
     this.state = {
       events: [],
-      artist: '',
-      venue: '',
-      location: '',
+      city: '',
       error: false,
       errorMessage: '',
     }
   }
 
-  componentDidMount() {
-    this.getEvents();
-  }
+  // componentDidMount() {
+  //   this.getEvents();
+  // }
   // Getting all of the events from the server
   // getEvents = async () => {
   //   try{
@@ -31,31 +29,19 @@ class Home extends React.Component {
   //   }
   // }
 
-  handleArtistInput = (e) => {
+  handleCityInput = (e) => {
     this.setState({
-      artist: e.target.value
-    })
-  }
-
-  handleVenueInput = (e) => {
-    this.setState({
-      venue: e.target.value
-    })
-  }
-
-  handleLocationInput = (e) => {
-    this.setState({
-      location: e.target.value
+      city: e.target.value
     })
   }
 
   handleFormSubmit = async (e) => {
     e.preventDefault();
     try{
-      let url = (`${process.env.REACT_APP_SERVER}/events&q=${this.state.artist}|${this.state.venue}|${this.state.location}`)
+      let url = (`${process.env.REACT_APP_SERVER}/events?city=${this.state.city}`)
       let eventInfo = await axios.get(url);
       this.setState({
-        events: eventInfo.data[0],
+        events: eventInfo.data,
       })
     } catch (error) {
       this.setState({
@@ -68,12 +54,15 @@ class Home extends React.Component {
 
 
   render() {
+    // function to map through the data retrieved from the server which are stored in "events" in state
+    // {event.venue} and other elements will have to match items that are in the data set that is sent from the api
+    
     // let events = this.state.events.data.map((event, idx) => {
     //   return <Card>
     //     <Card.Body>
-    //       <Card.Header>{this.state.venue}</Card.Header>
-    //       <Card.Title>{this.state.artist}</Card.Title>
-    //       <Card.Text>{this.state.datetime}</Card.Text>
+    //       <Card.Header>{event.venue}</Card.Header>
+    //       <Card.Title>{event.artist}</Card.Title>
+    //       <Card.Text>{event.location}</Card.Text>
     //     </Card.Body>
     //   </Card>
     // })
@@ -84,35 +73,13 @@ class Home extends React.Component {
         <Form onSubmit={this.handleFormSubmit}>
           <Form.Group
             className="mb-3"
-            controlId="artist"
-          >
-            <Form.Label>By Artist</Form.Label>
-            <Form.Control
-              type="text"
-              onInput={this.handleArtistInput}
-              placeholder="Artist"
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group
-            className="mb-3"
             controlId="location"
           >
-            <Form.Label>By Location</Form.Label>
+            <Form.Label>By City</Form.Label>
             <Form.Control
               type="text"
-              onInput={this.handleLocationInput}
-              placeholder="Location"
-            ></Form.Control>
-          </Form.Group>
-          <Form.Group
-            className="mb-3"
-            controlId="venue"
-          >
-            <Form.Label>By Venue</Form.Label>
-            <Form.Control
-              type="text"
-              onInput={this.handleVenueInput  }
-              placeholder="Venue"
+              onInput={this.handleCityInput}
+              placeholder="City"
             ></Form.Control>
           </Form.Group>
           <Button
