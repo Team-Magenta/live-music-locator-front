@@ -1,8 +1,8 @@
 import React from 'react';
 // import axios from 'axios';
-import './Search.css';
+import './MyEvents.css';
 
-class Search extends React.Component {
+class MyEvents extends React.Component {
   render() {
     return (
       <h2>Test Search</h2>
@@ -10,4 +10,4 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+export default MyEvents;

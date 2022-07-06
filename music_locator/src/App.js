@@ -1,9 +1,10 @@
 import './App.css';
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
-import Search from './components/Search';
+import Search from './components/MyEvents';
 import OurTeam from './components/OurTeam';
 import {
   BrowserRouter as Router,
@@ -24,7 +25,7 @@ class App extends React.Component {
               >
               </Route>
               <Route
-                exact path="/Search"
+                exact path="/MyEvents"
                 element={<Search/>}
               >
               </Route>

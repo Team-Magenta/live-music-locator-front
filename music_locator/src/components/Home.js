@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, Container } from 'react-bootstrap';
 import axios from 'axios';
 import './Home.css';
 
@@ -75,20 +75,23 @@ class Home extends React.Component {
     // {event.venue} and other elements will have to match items that are in the data set that is sent from the api
     
     let events = this.state.events.map((event, idx) => {
-      return <Card>
-        <Card.Img
-          variant="top"
-          // style={{cursor: 'pointer'}}
-          src={event.image}
-          alt={event.title}
-          title={event.title}
-        />
-        <Card.Body>
+      return <Container>
+        <Card>
+          <Card.Img
+            variant="top"
+            // style={{cursor: 'pointer'}}
+            src={event.image}
+            alt={event.title}
+            title={event.title}
+          />
+          <Card.Body>
           <Card.Header>{event.venue[0].name}</Card.Header>
           <Card.Title>{event.artist}</Card.Title>
           <Card.Text>{event.date}</Card.Text>
-        </Card.Body>
-      </Card>
+          </Card.Body>
+          <Button>Add to My Events</Button>
+        </Card>
+      </Container>
     });
     return (
       <>
