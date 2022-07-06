@@ -38,7 +38,7 @@ class Home extends React.Component {
   handleFormSubmit = async (e) => {
     e.preventDefault();
     try{
-      let url = (`${process.env.REACT_APP_SERVER}/events?city=${this.state.city}`)
+      let url = (`${process.env.REACT_APP_SERVER}/allEvents?location=${this.state.city}`)
       let eventInfo = await axios.get(url);
       this.setState({
         events: eventInfo.data,
