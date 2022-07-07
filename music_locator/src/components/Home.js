@@ -75,8 +75,8 @@ class Home extends React.Component {
     // {event.venue} and other elements will have to match items that are in the data set that is sent from the api
     
     let events = this.state.events.map((event, idx) => {
-      return <Container>
-        <Card>
+      return <Container className = 'mt-4'>
+        <Card style={{width: '18rem'}} className="h-100 p-3 card-container">
           <Card.Img
             variant="top"
             // style={{cursor: 'pointer'}}
@@ -115,7 +115,7 @@ class Home extends React.Component {
             Submit
           </Button>
         </Form>
-        <div>
+        <div class="background">
           {events}
         </div>
       </>

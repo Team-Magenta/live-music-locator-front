@@ -1,0 +1,31 @@
+.card-container {
+    width: 20vw;
+    border: rgb(123, 123, 123) solid 3px;
+    border-radius: 20px 20px;
+    margin: .9vw;
+    padding: 1vw;
+    background: linear-gradient(white, rgb(165, 164, 169));
+    justify-content: space-between;
+    
+    
+
+    
+
+}
+
+.background {
+    background-image: url(/public/tmp.gif);
+    background-size: 200vh;
+    height: 100%;
+    
+        
+}
+
+div {
+    height: 100%;
+    width: 100%;
+}
+
+Button {
+    background: linear-gradient(to right, white, grey);
+}
