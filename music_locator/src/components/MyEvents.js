@@ -114,7 +114,7 @@ render() {
                 variant="primary" 
                 onClick={() => this.handleUpdate(event)}
               >
-                Did I Attended
+                Did I Attend
               </Button>
         </Carousel.Caption>
       </Carousel.Item>
