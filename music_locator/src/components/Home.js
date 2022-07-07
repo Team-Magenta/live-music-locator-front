@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Button, Card, Container } from 'react-bootstrap';
 import axios from 'axios';
 import './Home.css';
+import { format, parseISO } from 'date-fns'
 
 let SERVER = process.env.REACT_APP_SERVER;
 
@@ -48,7 +49,7 @@ class Home extends React.Component {
       this.setState({
         events: [...this.state.events, createEvent.data]
       });
-    } catch(error) {
+    } catch (error) {
       console.log('error: ', error.response.data)
     }
   }
@@ -58,7 +59,7 @@ class Home extends React.Component {
       city: event.target.value
     });
   };
-  
+
   // componentDidMount() {
   //   this.getEvents();
   // }
@@ -72,8 +73,8 @@ class Home extends React.Component {
   //       events: results.data
   //     })
   //   } catch (error) {
-      // console.log('error: ', error.response.data)
-    // }
+  // console.log('error: ', error.response.data)
+  // }
   // }
 
 
@@ -90,7 +91,7 @@ class Home extends React.Component {
   //       error: true,
   //       errorMessage: `An error occurred: ${error.reponse.status}`
   //     })
-      
+
   //   }
   // }
 
@@ -98,52 +99,80 @@ class Home extends React.Component {
   render() {
     // function to map through the data retrieved from the server which are stored in "events" in state
     // {event.venue} and other elements will have to match items that are in the data set that is sent from the api
-    
+
     let events = this.state.events.map((event, idx) => {
-      return <Container className = 'mt-4'>
-        <Card style={{width: '18rem'}} className="h-100 p-3 card-container">
+
+      return (
+        // <Container className='mt-4'>
+        <Card className="card-container" key={idx} style={{ width: '18rem', margin: 25 }}>
           <Card.Img
+            className="card-image"
             variant="top"
-            // style={{cursor: 'pointer'}}
             src={event.image}
             alt={event.title}
-            title={event.title}
-          />
+            title={event.title} />
           <Card.Body>
-          <Card.Header>{event.venue[0].name}</Card.Header>
-          <Card.Title>{event.artist}</Card.Title>
-          <Card.Text>{event.date}</Card.Text>
+            <Card.Title>{event.venue[0].name}</Card.Title>
+            <Card.Text className="mb-2 pt-2 h-100">
+              {event.artist}
+            </Card.Text>
+            <Card.Text>
+              {format(parseISO(event.date), 'PPPP')}
+            </Card.Text>
+            <Button variant="light">Add to My Events</Button>
           </Card.Body>
-          <Button onClick={() => this.handleEventSubmit(event)}>Add to My Events</Button>
         </Card>
-      </Container>
+        // </Container>
+      )
+      // return <div class="card-div">
+      //   <Container className='mt-4'>
+      //     <Card style={{ width: '18rem' }} className="h-100 p-3 card-container">
+      //       <Card.Img
+      //         className="card-image"
+      //         variant="top"
+      //         // style={{cursor: 'pointer'}}
+      //         src={event.image}
+      //         alt={event.title}
+      //         title={event.title}
+      //       />
+      //       <Card.Body>
+      //         <Card.Header>{event.venue[0].name}</Card.Header>
+      //         <Card.Title>{event.artist}</Card.Title>
+      //         <Card.Text>{event.date}</Card.Text>
+      //       </Card.Body>
+      //       <Button onClick={() => this.handleEventSubmit(event)}>Add to My Events</Button>
+      //     </Card>
+      //   </Container>
+      // </div>
     });
     return (
-      <>
-        <h2>Test Home</h2>
-        <p>testing testing testing</p>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group
-            className="mb-3"
-            controlId="location"
-          >
-            <Form.Label>By City</Form.Label>
-            <Form.Control
-              type="text"
-              onInput={this.handleCityInput}
-              placeholder="City"
-            ></Form.Control>
-          </Form.Group>
-          <Button
-            type="submit"
-            variant="primary">
-            Submit
-          </Button>
-        </Form>
-        <div class="background">
+      <div className="d-flex h-100">
+
+
+        <div className="form-div">
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group
+              className="mb-3"
+              controlId="location"
+            >
+              <Form.Label>By City</Form.Label>
+              <Form.Control
+                type="text"
+                onInput={this.handleCityInput}
+                placeholder="City"
+              ></Form.Control>
+            </Form.Group>
+            <Button
+              type="submit"
+              variant="primary">
+              Submit
+            </Button>
+          </Form>
+        </div>
+        <div className="background">
           {events}
         </div>
-      </>
+      </div>
     )
   }
 }
