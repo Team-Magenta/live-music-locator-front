@@ -17,6 +17,7 @@ class Home extends React.Component {
     }
   };
 
+
   handleSubmit = async (event) => {
     event.preventDefault();
     let url = `${process.env.REACT_APP_SERVER}/allEvents?location=${this.state.city}`;
@@ -94,7 +95,16 @@ class Home extends React.Component {
 
   //   }
   // }
-
+  postEvents = async (event) => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/events`;
+      let createdEvent = await axios.post(url, event);
+      this.setState({
+        events: [...this.state.events, createdEvent.data]})
+      } catch(error){
+        console.log('we have an error: ', error.response)
+      }
+  }
 
   render() {
     // function to map through the data retrieved from the server which are stored in "events" in state
@@ -121,6 +131,7 @@ class Home extends React.Component {
             </Card.Text>
             <Button variant="light">Add to My Events</Button>
           </Card.Body>
+          <Button onClick={()=> {this.postEvents(event)}}>Add to My Events</Button>
         </Card>
         // </Container>
       )
