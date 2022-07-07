@@ -3,6 +3,8 @@ import { Form, Button, Card, Container } from 'react-bootstrap';
 import axios from 'axios';
 import './Home.css';
 
+let SERVER = process.env.REACT_APP_SERVER;
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +20,7 @@ class Home extends React.Component {
     event.preventDefault();
     let url = `${process.env.REACT_APP_SERVER}/allEvents?location=${this.state.city}`;
     let eventsInfo = await axios.get(url);
-    console.log(eventsInfo);
+    // console.log(eventsInfo);
     this.setState({
       events: eventsInfo.data,
     });
@@ -28,9 +30,32 @@ class Home extends React.Component {
     // });
   };
 
-  handleCityInput = (e) => {
+  handleEventSubmit = (event) => {
+    let newEvent = {
+      image: event.image,
+      venue: event.venue[0].name,
+      artist: event.artist,
+      date: event.date,
+    }
+    console.log(newEvent)
+    this.postEvents(newEvent)
+  }
+
+  postEvents = async (newEventObj) => {
+    try {
+      let url = `${SERVER}/events`;
+      let createEvent = await axios.post(url, newEventObj);
+      this.setState({
+        events: [...this.state.events, createEvent.data]
+      });
+    } catch(error) {
+      console.log('error: ', error.response.data)
+    }
+  }
+
+  handleCityInput = (event) => {
     this.setState({
-      city: e.target.value
+      city: event.target.value
     });
   };
   
@@ -89,7 +114,7 @@ class Home extends React.Component {
           <Card.Title>{event.artist}</Card.Title>
           <Card.Text>{event.date}</Card.Text>
           </Card.Body>
-          <Button>Add to My Events</Button>
+          <Button onClick={() => this.handleEventSubmit(event)}>Add to My Events</Button>
         </Card>
       </Container>
     });
