@@ -1,12 +1,42 @@
-
-
-.carousel-item {
-  width: 650px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
+h1 {
+  text-align: center;
 }
 
-p {
-  text-align: center;
+.card-image {
+  height: 180px;
+}
+
+.cardgroup {
+  display: flex;
+  flex-wrap: wrap; 
+  margin-top: 40px; 
+  margin-bottom: 90px;
+}
+
+.card {
+  width: 150;
+  height: 150;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 10px 4px 10px rgba(0,0,0,0.6);
+  border-radius: 10px;
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
+  transition: 
+    filter 200ms linear,
+    transform 200ms linear;
+
+}
+
+.card:hover{
+  transform: scale(1.10) translateZ(0);
+}
+
+.stephen {
+  padding-bottom: 25px;
+}
+
+.falashade {
+  padding-bottom: -80px;
 }
