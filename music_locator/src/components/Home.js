@@ -24,7 +24,7 @@ class Home extends React.Component {
       if (this.props.auth0.isAuthenticated) {
         const res = await this.props.auth0.getIdTokenClaims();
         const jwt = res.__raw;
-        console.log(jwt);
+        // console.log(jwt);
 
         const config = {
           method: 'get',
