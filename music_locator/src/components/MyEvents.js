@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Card, Button, Carousel, Image } from 'react-bootstrap';
+import { Button, Carousel } from 'react-bootstrap';
 import './MyEvents.css';
 
 class MyEvents extends React.Component {
@@ -8,7 +8,8 @@ class MyEvents extends React.Component {
     super(props);
     this.state = {
       myEvents: [],
-      updatedEvent: []
+      updatedEvent: [],
+      attended: 0
     }
     console.log(this.state.myEvents)
   }
@@ -57,7 +58,7 @@ class MyEvents extends React.Component {
 
       const updatedEvents = this.state.myEvents.map(event => {
         if (event._id === eventToUpdate._id) {
-         event.attended = true
+          event.attended = true
           return eventToUpdate;
         } else {
           return event;
@@ -72,70 +73,82 @@ class MyEvents extends React.Component {
       console.error(error);
     }
   }
-  
+
+  handleAttended = () => {
+    this.setState({
+
+      attended: this.state.attended + 1,
+
+    });
+  }
+
 
   // render() {
 
-    
-//     return (
-//       <>
-//         <h2>Test Search</h2>
+
+  //     return (
+  //       <>
+  //         <h2>Test Search</h2>
 
 
-//         <Button
-//           onClick={() => this.deleteBook(this.state.myevents._id)} variant="danger">
-//           Delete
-//         </Button>
-//       </>
-//     )
-//   }
-// }
+  //         <Button
+  //           onClick={() => this.deleteBook(this.state.myevents._id)} variant="danger">
+  //           Delete
+  //         </Button>
+  //       </>
+  //     )
+  //   }
+  // }
 
-render() {
+  render() {
 
-  /* TODO: render all the books in a Carousel */
-  let events = this.state.myEvents.map((event, idx) => {
+    /* TODO: render all the books in a Carousel */
+    let events = this.state.myEvents.map((event, idx) => {
+      return (
+
+        <Carousel.Item key={idx}>
+          <img
+            className="d-block"
+            src={event.image}
+            alt="First slide"
+          />
+          <Carousel.Caption>
+            <h3>{event.artist}</h3>
+            <p>{event.Image}</p>
+            <p>{this.state.attended} ♥️ Attended</p>
+            <Button
+              onClick={() => this.deleteEvent(event._id)} variant="danger">
+              Delete
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                this.handleUpdate(event)
+                this.handleAttended();
+              }}
+            >
+              Did I Attend
+            </Button>
+          </Carousel.Caption>
+        </Carousel.Item>
+
+      )
+    })
+
     return (
+      <>
+        <h2>My Saved Events</h2>
+        {this.state.myEvents.length ? (
+          <Carousel>
+            {events}
+          </Carousel>
+        ) : (
+          <h3>No Saved Events</h3>
+        )}
 
-      <Carousel.Item key={idx}>
-        <img
-          className="d-block w-100"
-          src={event.image}
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h3>{event.artist}</h3>
-          <p>{event.Image}</p>
-          <Button 
-          onClick={() => this.deleteEvent(event._id)} variant="danger">
-          Delete
-        </Button>
-        <Button 
-                variant="primary" 
-                onClick={() => this.handleUpdate(event)}
-              >
-                Did I Attend
-              </Button>
-        </Carousel.Caption>
-      </Carousel.Item>
-      
+      </>
     )
-  })
-
-  return (
-    <>
-      <h2>My Essential Lifelong Learning &amp; Formation Shelf</h2>
-      {this.state.myEvents.length ? (
-        <Carousel>
-          {events}
-        </Carousel>
-      ) : (
-        <h3>No Books Found :(</h3>
-      )}
-
-    </>
-  )
-}
+  }
 }
 
 // componentDidMount() {
