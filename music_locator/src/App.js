@@ -1,7 +1,7 @@
 import { withAuth0 } from "@auth0/auth0-react";
 import LoginButton from './LoginButton';
 import LogoutButton from './LogoutButton';
-import Profile from './Profile';
+// import Content from './Content';
 import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <>
         {this.props.auth0.isAuthenticated ? <LogoutButton /> : <LoginButton />}
-        {this.props.auth0.isAuthenticated ? <Profile/> : <h2>Please Login</h2>}
+        
         <div className="body">
           <Router>
             <Header />
