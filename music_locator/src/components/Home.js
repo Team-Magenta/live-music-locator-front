@@ -5,7 +5,9 @@ import axios from 'axios';
 import './Home.css';
 import { format, parseISO } from 'date-fns'
 
+
 let SERVER = process.env.REACT_APP_SERVER;
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class Home extends React.Component {
       errorMessage: '',
     }
   };
+
 
   handleSubmit = async (event) => {
     event.preventDefault();
@@ -66,9 +69,11 @@ class Home extends React.Component {
     this.postEvents(newEvent)
   }
 
+
   postEvents = async (newEventObj) => {
     try {
       let url = `${SERVER}/events`;
+
       let createEvent = await axios.post(url, newEventObj);
       this.setState({
         events: [...this.state.events, createEvent.data]
@@ -78,7 +83,9 @@ class Home extends React.Component {
     }
   }
 
+
   handleCityInput = (event) => {
+
     this.setState({
       city: event.target.value
     });
@@ -118,7 +125,17 @@ class Home extends React.Component {
 
   //   }
   // }
-
+  postEvents = async (event) => {
+    try {
+      let url = `${process.env.REACT_APP_SERVER}/events`;
+      let createdEvent = await axios.post(url, event);
+      this.setState({
+        events: [...this.state.events, createdEvent.data]
+      })
+    } catch (error) {
+      console.log('we have an error: ', error.response)
+    }
+  }
 
   render() {
     // function to map through the data retrieved from the server which are stored in "events" in state
@@ -127,7 +144,7 @@ class Home extends React.Component {
     let events = this.state.events.map((event, idx) => {
 
       return (
-        
+
         // <Container className='mt-4'>
         <Card className="card-container" key={idx} style={{ width: '18rem', margin: 25 }}>
           <Card.Img
@@ -144,7 +161,9 @@ class Home extends React.Component {
             <Card.Text>
               {format(parseISO(event.date), 'PPPP')}
             </Card.Text>
-            <Button variant="light">Add to My Events</Button>
+
+            <Button onClick={() => this.handleEventSubmit(event)}variant="light">Add to My Events</Button>
+
           </Card.Body>
         </Card>
         // </Container>
@@ -171,8 +190,10 @@ class Home extends React.Component {
       // </div>
     });
     return (
+
       <>
       {this.props.auth0.isAuthenticated ? (
+
       <div className="d-flex h-100">
 
 
@@ -200,8 +221,10 @@ class Home extends React.Component {
           {events}
         </div>
       </div>
+
       ): <h2>Please Login</h2>}
       </>
+
     )
   }
 }
