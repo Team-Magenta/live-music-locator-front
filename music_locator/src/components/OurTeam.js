@@ -61,7 +61,7 @@ class OurTeam extends React.Component {
         </Col>
         <Col>
         <Card className="h-100">
-          <Card.Img variant="top" src="https://via.placeholder.com/150" />
+          <Card.Img variant="top" src="./images/marvin.jpg" />
           <Card.Body>
             <Card.Title>Marvin Bonds</Card.Title>
             <Card.Text>
