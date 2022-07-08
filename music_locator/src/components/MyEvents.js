@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Card, Button, Carousel, Image } from 'react-bootstrap';
-import './MyEvents.css';
+
 
 class MyEvents extends React.Component {
   constructor(props) {
