@@ -19,6 +19,7 @@ h1 {
   flex-wrap: wrap; 
   margin-top: 40px; 
   margin-bottom: 90px;
+  /* background-image: url("./images/background1.png"); */
 }
 
 .card {
