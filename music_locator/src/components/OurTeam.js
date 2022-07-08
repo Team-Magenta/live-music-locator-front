@@ -12,7 +12,7 @@ class OurTeam extends React.Component {
   render() {
     return (
       <>
-        <h1>Our Team</h1>
+        <h1>Our Team Won</h1>
         <Row xs={1} sm={2} md={3} lg={5} className="cardgroup">
           
         <Col>{/* <div class="cardgroup"> */}
