@@ -6,6 +6,14 @@ h1 {
   height: 180px;
 }
 
+.card-body {
+  border-radius: 10px;
+}
+
+.card-title {
+  color: #A58CB3;
+}
+
 .cardgroup {
   display: flex;
   flex-wrap: wrap; 
@@ -33,10 +41,20 @@ h1 {
   transform: scale(1.10) translateZ(0);
 }
 
-.stephen {
-  padding-bottom: 25px;
+
+
+/* .stephen {
+  
 }
 
 .falashade {
-  padding-bottom: -80px;
+  padding-bottom:
 }
+
+.dennis {
+  padding-bottom: 25px;
+}
+
+.scottie {
+  padding-bottom: 
+} */

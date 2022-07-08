@@ -13,9 +13,9 @@ class OurTeam extends React.Component {
         <h1>Our Team</h1>
         <div class="cardgroup">
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="./images/stephen.png" class="stephen"/>
+          <Card.Img variant="top" src="https://via.placeholder.com/150" class="stephen"/>
           <Card.Body>
-            <Card.Title>Stephan Martinez</Card.Title>
+            <Card.Title>Stephen Martinez</Card.Title>
             <Card.Text >
               Some quick example text to build on the card title and make up the bulk of
               the card's content.
@@ -23,7 +23,7 @@ class OurTeam extends React.Component {
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="./images/scottie.jpeg" />
+          <Card.Img variant="top" src="https://via.placeholder.com/150" class="scottie"/>
           <Card.Body>
             <Card.Title>Scottie Houghton</Card.Title>
             <Card.Text>
@@ -43,11 +43,11 @@ class OurTeam extends React.Component {
           </Card.Body>
         </Card>
         <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="https://via.placeholder.com/150" />
+          <Card.Img variant="top" src="https://via.placeholder.com/150" class="dennis"/>
           <Card.Body>
             <Card.Title>Dennis Devries</Card.Title>
             <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
+            Some quick example text to build on the card title and make up the bulk of
               the card's content.
             </Card.Text>
           </Card.Body>
