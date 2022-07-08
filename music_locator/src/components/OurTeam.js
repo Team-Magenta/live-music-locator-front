@@ -21,8 +21,7 @@ class OurTeam extends React.Component {
           <Card.Body>
             <Card.Title>Stephen Martinez</Card.Title>
             <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+              I have a history of working in the security industry. I was inspired to get into technology by a family friend. I believe my drive and work ethic will set me in the right direction to becoming a successful software developer
             </Card.Text>
           </Card.Body>
         </Card>
@@ -40,12 +39,11 @@ class OurTeam extends React.Component {
         </Col>
         <Col>
         <Card className="h-100">
-          <Card.Img variant="top" src="https://via.placeholder.com/150"/>
+          <Card.Img variant="top" src="./images/falashade.png"/>
           <Card.Body>
-            <Card.Title>Marvin Bonds</Card.Title>
+            <Card.Title>Falashade Greene</Card.Title>
             <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+            Software Developer student at Code Fellows.  I have a background in Fashion Design. However as my love for tech grew I figured why not bridge the gap between design and tech and make it my career. I’m very passionate about technology and can bring a great deal of value to the technology space.
             </Card.Text>
           </Card.Body>
         </Card>
@@ -63,12 +61,11 @@ class OurTeam extends React.Component {
         </Col>
         <Col>
         <Card className="h-100">
-          <Card.Img variant="top" src="./images/falashade.png" />
+          <Card.Img variant="top" src="https://via.placeholder.com/150" />
           <Card.Body>
-            <Card.Title>Falashade Greene</Card.Title>
+            <Card.Title>Marvin Bonds</Card.Title>
             <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+            Currently a student at Code Fellows. As the global environment continues to shift, he hopes to be an active participant of that technological advancement, with an overall focus on full stack. The idea is to eventually provide the client a unique, all inclusive experience.
             </Card.Text>
           </Card.Body>
         </Card>
