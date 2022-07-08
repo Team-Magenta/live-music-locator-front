@@ -1,5 +1,12 @@
 h1 {
   text-align: center;
+  font-family: 'Splash', cursive;
+  font-size: 100px;
+}
+
+h1:hover{
+  /* color: red; */
+
 }
 
 .card-image {
@@ -12,14 +19,20 @@ h1 {
 
 .card-title {
   color: #A58CB3;
+  
 }
 
 .cardgroup {
-  display: flex;
-  flex-wrap: wrap; 
+  /* display: flex;
+  flex-wrap: wrap;  */
   margin-top: 40px; 
   margin-bottom: 90px;
-  /* background-image: url("./images/background1.png"); */
+  background-image: url("/public/images/background1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  padding-bottom: 4rem;
+  
 }
 
 .card {
@@ -28,6 +41,7 @@ h1 {
   margin: 20px;
   margin-left: auto;
   margin-right: auto;
+  /* box-shadow: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% ); */
   box-shadow: 10px 4px 10px rgba(0,0,0,0.6);
   border-radius: 10px;
   transform-origin: center;
@@ -40,22 +54,47 @@ h1 {
 
 .card:hover{
   transform: scale(1.10) translateZ(0);
-}
+  border-radius: 10px;
+  border: 10px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  /* box-shadow: linear-gradient(red, orange); */
 
-
-
-/* .stephen {
   
 }
 
-.falashade {
-  padding-bottom:
+
+/* .box:before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+  transform: translate3d(0px, 20px, 0) scale(0.95);
+  filter: blur(20px);
+  opacity: var(0.7);
+  transition: opacity 0.3s;
+  border-radius: inherit;
 }
 
-.dennis {
-  padding-bottom: 25px;
-}
-
-.scottie {
-  padding-bottom: 
+/* 
+* Prevents issues when the parent creates a 
+* stacking context. (For example, using the transform
+* property )
+*/
+/* .box::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border-radius: inherit;
 } */
+ 
+
