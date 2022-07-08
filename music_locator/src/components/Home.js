@@ -1,8 +1,13 @@
 import React from 'react';
-import { Form, Button, Card, Container } from 'react-bootstrap';
+import { Form, Button, Card } from 'react-bootstrap';
+import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import './Home.css';
 import { format, parseISO } from 'date-fns'
+
+
+let SERVER = process.env.REACT_APP_SERVER;
+
 
 class Home extends React.Component {
   constructor(props) {
@@ -18,16 +23,39 @@ class Home extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    let url = `${process.env.REACT_APP_SERVER}/allEvents?location=${this.state.city}`;
-    let eventsInfo = await axios.get(url);
-    console.log(eventsInfo);
-    this.setState({
-      events: eventsInfo.data,
-    });
-    // let enteredCity = event.target.value;
-    // this.setState({
-    //   city: enteredCity,
-    // });
+    try {
+      if (this.props.auth0.isAuthenticated) {
+        const res = await this.props.auth0.getIdTokenClaims();
+        const jwt = res.__raw;
+        // console.log(jwt);
+
+        const config = {
+          method: 'get',
+          baseURL: process.env.REACT_APP_SERVER,
+          url: `./allEvents?location=${this.state.city}`,
+          headers: {'Authorization': `Bearer ${jwt}`}
+        }
+        console.log('config: ', config)
+        const eventsInfo = await axios(config)
+
+        
+        // let url = `${process.env.REACT_APP_SERVER}/allEvents?location=${this.state.city}`;
+        // let eventsInfo = await axios.get(url);
+        
+        this.setState({
+          events: eventsInfo.data,
+        });
+        // let enteredCity = event.target.value;
+        // this.setState({
+        //   city: enteredCity,
+        // });
+
+      }
+
+    } catch (error) {
+      console.log(error.message);
+    }
+
   };
 
   handleEventSubmit = (event) => {
@@ -40,9 +68,12 @@ class Home extends React.Component {
     console.log(newEvent)
     this.postEvents(newEvent)
   }
+
+
   postEvents = async (newEventObj) => {
     try {
-      let url = `${process.env.REACT_APP_SERVER}/events`;
+      let url = `${SERVER}/events`;
+
       let createEvent = await axios.post(url, newEventObj);
       this.setState({
         events: [...this.state.events, createEvent.data]
@@ -51,9 +82,12 @@ class Home extends React.Component {
       console.log('error: ', error.response.data)
     }
   }
-  handleCityInput = (e) => {
+
+
+  handleCityInput = (event) => {
+
     this.setState({
-      city: e.target.value
+      city: event.target.value
     });
   };
 
@@ -110,6 +144,7 @@ class Home extends React.Component {
     let events = this.state.events.map((event, idx) => {
 
       return (
+
         // <Container className='mt-4'>
         <Card className="card-container" key={idx} style={{ width: '18rem', margin: 25 }}>
           <Card.Img
@@ -126,7 +161,9 @@ class Home extends React.Component {
             <Card.Text>
               {format(parseISO(event.date), 'PPPP')}
             </Card.Text>
+
             <Button onClick={() => this.handleEventSubmit(event)}variant="light">Add to My Events</Button>
+
           </Card.Body>
         </Card>
         // </Container>
@@ -153,6 +190,10 @@ class Home extends React.Component {
       // </div>
     });
     return (
+
+      <>
+      {this.props.auth0.isAuthenticated ? (
+
       <div className="d-flex h-100">
 
 
@@ -180,8 +221,12 @@ class Home extends React.Component {
           {events}
         </div>
       </div>
+
+      ): <h2>Please Login</h2>}
+      </>
+
     )
   }
 }
 
-export default Home;
+export default withAuth0(Home);
