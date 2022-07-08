@@ -6,14 +6,14 @@ import './Header.css';
 class Header extends React.Component {
   render() {
     return (
-      <div className="links">
-        <Navbar collapseOnSelect expand="lg" variant="light">
-          <Navbar.Brand>MUSIC | FINDER</Navbar.Brand>
-          <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
-          <NavItem><Link to="/MyEvents" className="nav-link">My Events</Link></NavItem>
-          <NavItem><Link to="/OurTeam" className="nav-link">Our Team</Link></NavItem>
-        </Navbar>
-      </div>
+
+      <Navbar collapseOnSelect expand="lg" variant="dark">
+        <Navbar.Brand>Music Locator</Navbar.Brand>
+        <NavItem><Link to="/" className="nav-link">Home</Link></NavItem>
+        <NavItem><Link to="/MyEvents" className="nav-link">My Events</Link></NavItem>
+        <NavItem><Link to="/OurTeam" className="nav-link">Our Team</Link></NavItem>
+      </Navbar>
+
     )
   }
 }
