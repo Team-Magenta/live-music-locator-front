@@ -1,3 +1,7 @@
-.header {
-  background-color: rgb(40, 40, 40)
+.links {
+  /* display: flexbox; */
+  background-color: rgb(181, 181, 181);
+
+  border: 1px solid white;
+
 }
